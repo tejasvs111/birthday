@@ -4,7 +4,7 @@
  */
 
 export const BOY_NAME = "Chirag";
-export const GIRL_NAME = "Vishaka";
+export const GIRL_NAME = "Vishakha";
 
 /** Shown on the first screen under the big heading. */
 export const BIRTHDAY_MESSAGE =
