@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  color: #fff4ea;
+  background:
+    radial-gradient(60rem 36rem at 15% -10%, rgba(209, 52, 91, 0.35), transparent 60%),
+    radial-gradient(50rem 36rem at 100% 20%, rgba(249, 211, 220, 0.14), transparent 60%),
+    radial-gradient(60rem 40rem at 50% 110%, rgba(122, 26, 64, 0.7), transparent 60%),
+    linear-gradient(180deg, #2a0715 0%, #3d0b21 55%, #2a0715 100%);
+  background-color: #2a0715;
+  overflow-x: hidden;
+}
+
+@layer components {
+  .glass {
+    background: linear-gradient(135deg, rgba(255, 244, 234, 0.12), rgba(255, 244, 234, 0.05));
+    border: 1px solid rgba(249, 211, 220, 0.25);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 20px 60px rgba(20, 0, 10, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  .glow-card {
+    animation: card-glow 4s ease-in-out infinite;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-rose to-rose-glow px-7 py-3.5 text-base font-semibold text-cream shadow-glow transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blush;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-blush/40 bg-white/5 px-7 py-3.5 text-base font-semibold text-blush transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blush;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 32px rgba(255, 111, 145, 0.45);
+  }
+}
+
+@keyframes card-glow {
+  0%,
+  100% {
+    box-shadow: 0 20px 60px rgba(20, 0, 10, 0.45), 0 0 30px rgba(255, 111, 145, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 20px 60px rgba(20, 0, 10, 0.45), 0 0 70px rgba(255, 111, 145, 0.38),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+}
+
+@keyframes rise {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--o, 0.4);
+  }
+  90% {
+    opacity: var(--o, 0.4);
+  }
+  100% {
+    transform: translate3d(var(--dx, 0px), -115vh, 0) rotate(var(--rot, 20deg));
+    opacity: 0;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.2);
+  }
+}
+
+.float-item {
+  position: absolute;
+  bottom: -3rem;
+  line-height: 1;
+  will-change: transform;
+  animation: rise var(--dur, 20s) linear var(--delay, 0s) infinite;
+}
+
+.twinkle {
+  position: absolute;
+  border-radius: 9999px;
+  background: #fff4ea;
+  box-shadow: 0 0 10px 2px rgba(255, 190, 210, 0.8);
+  animation: twinkle var(--dur, 4s) ease-in-out var(--delay, 0s) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .float-item {
+    display: none;
+  }
+  .twinkle,
+  .glow-card {
+    animation: none;
+  }
+  .twinkle {
+    opacity: 0.5;
+  }
+}
